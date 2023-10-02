@@ -15,8 +15,12 @@ export async function generateStaticParams() {
   }));
 }
 
-const page = ({ params }: { params: { slug: string } }) => {
-  return <div>page</div>;
+const page = async ({ params }: { params: { id: number } }) => {
+  const product = await fetch(
+    `https://dummyjson.com/products/${params.id}`
+  ).then((res) => res.json());
+
+  return <div>{product.title}</div>;
 };
 
 export default page;
