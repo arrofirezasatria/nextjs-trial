@@ -6,7 +6,7 @@ const pageProducts = async () => {
   const { products } = await res.json();
 
   return (
-    <div>
+    <div className="">
       {products.map((item: any, index: number) => {
         return <div key={index}>{item.title}</div>;
       })}
