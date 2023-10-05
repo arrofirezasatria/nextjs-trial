@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const pageProducts = async () => {
@@ -8,7 +9,11 @@ const pageProducts = async () => {
   return (
     <div className="">
       {products.map((item: any, index: number) => {
-        return <div key={index}>{item.title}</div>;
+        return (
+          <div key={index}>
+            <Link href={`/product/${index}`}>{item.title}</Link>
+          </div>
+        );
       })}
     </div>
   );
