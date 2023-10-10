@@ -1,16 +1,21 @@
+import sleep from "@/utils/sleep";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const pageProducts = async () => {
-  const res = await fetch("https://dummyjson.com/posts");
+  const res = await fetch("https://dummyjson.com/posts").then(async (res) => {
+    await sleep(1000);
+
+    return res;
+  });
 
   const { posts } = await res.json();
 
   return (
     <div className="flex flex-col space-y-3">
       <h1 className="font-bold text-2xl py-4">Blog Posts</h1>
-      {posts.map((item: any, index: number) => {
+      {posts.slice(0, 10).map((item: any, index: number) => {
         return (
           <Link href={`/posts/${index + 1}`} key={index}>
             <div className="w-full flex">

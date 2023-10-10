@@ -1,18 +1,11 @@
 // import waitUntil from "@/utils/wait";
+import sleep from "@/utils/sleep";
 import Image from "next/image";
 import React from "react";
 
 interface Product {
   id: number;
   title: string;
-}
-
-function sleep(duration: number): Promise<void> {
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, duration);
-  });
 }
 
 export async function generateStaticParams() {
@@ -28,14 +21,14 @@ export async function generateStaticParams() {
 const page = async ({ params }: { params: { id: number } }) => {
   const post = await fetch(`https://dummyjson.com/posts/${params.id}`).then(
     async (res) => {
-      await sleep(2000);
+      await sleep(1000);
       return res.json();
     }
   );
 
   const user = await fetch(`https://dummyjson.com/user/${post.userId}`).then(
     async (res) => {
-      await sleep(2000);
+      await sleep(1000);
       return res.json();
     }
   );
